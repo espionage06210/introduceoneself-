@@ -212,19 +212,19 @@
           <i data-lucide="chevron-right" class="chevron-icon w-4 h-4 transition-all duration-300 text-slate-600 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"></i>
         </button>
 
-        <!-- Button: AI Assistant -->
-        <button id="btn-ai" onclick="switchTab('ai')" class="tab-btn relative flex items-center justify-between p-4 rounded-xl border transition-all duration-300 overflow-hidden group bg-slate-900/50 border-emerald-500/30 hover:bg-emerald-500/10 hover:border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+        <!-- Button: Fortune Draw -->
+        <button id="btn-fortune" onclick="switchTab('fortune')" class="tab-btn relative flex items-center justify-between p-4 rounded-xl border transition-all duration-300 overflow-hidden group bg-slate-900/50 border-emerald-500/30 hover:bg-emerald-500/10 hover:border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
           <div class="absolute inset-0 bg-emerald-500/5 animate-pulse pointer-events-none"></div>
           <div class="hover-bg absolute inset-0 bg-gradient-to-r from-emerald-400/0 via-emerald-400/10 to-emerald-400/0 translate-x-[-100%] transition-transform duration-700 group-hover:translate-x-[100%]"></div>
           <div class="flex items-center gap-3 relative z-10">
             <div class="icon-wrapper transition-colors duration-300 text-emerald-500 group-hover:text-emerald-300">
-              <i data-lucide="bot" class="w-5 h-5"></i>
+              <i data-lucide="sparkles" class="w-5 h-5"></i>
             </div>
             <span class="btn-text font-medium text-sm sm:text-base transition-colors duration-300 text-emerald-400 group-hover:text-white">
-              Ask AI Mari
+              Daily Fortune
             </span>
           </div>
-          <i data-lucide="sparkles" class="chevron-icon w-4 h-4 transition-all duration-300 text-emerald-400 opacity-100 animate-pulse"></i>
+          <i data-lucide="chevron-right" class="chevron-icon w-4 h-4 transition-all duration-300 text-emerald-400 opacity-100"></i>
         </button>
 
       </div>
@@ -301,28 +301,34 @@
                      class="text-emerald-400 hover:text-emerald-300 transition-colors duration-300 flex items-center gap-1 group/link">
                     @espionage06210
                     <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover/link:opacity-100 transition-all -translate-x-2 group-hover/link:translate-x-0"></i>
-              </a>
-            </span>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+            <!-- Content: Fortune Draw -->
+            <div id="content-fortune" class="tab-content hidden h-full flex flex-col space-y-4 items-center justify-center min-h-[200px]">
+              <p class="text-sm text-emerald-400/80 font-mono mb-2 text-center w-full border-b border-emerald-500/30 pb-2 shadow-[0_1px_5px_rgba(16,185,129,0.1)]">Initialize fate decryption module...</p>
+              
+              <div class="flex flex-col items-center justify-center w-full py-4">
+                <button id="draw-btn" onclick="drawFortune()" class="relative group px-8 py-3 bg-emerald-950/50 border border-emerald-500/50 hover:bg-emerald-600/20 hover:border-emerald-400 rounded-lg text-emerald-300 font-mono font-bold tracking-widest transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.2)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] overflow-hidden">
+                  <span class="relative z-10 flex items-center gap-2">
+                    <i data-lucide="dices" class="w-5 h-5 group-hover:animate-bounce"></i> DRAW FORTUNE
+                  </span>
+                </button>
+
+                <!-- 抽籤結果顯示區塊 -->
+                <div id="fortune-result" class="mt-8 p-6 w-full max-w-sm rounded-xl border border-slate-800 bg-slate-900/50 text-center transition-all duration-500 opacity-0 transform scale-95 pointer-events-none">
+                  <h3 id="fortune-title" class="text-3xl font-bold font-mono mb-2 text-slate-300 drop-shadow-md">???</h3>
+                  <p id="fortune-desc" class="text-slate-400 text-sm">Awaiting your destiny...</p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
-
-        <!-- Content: AI Chat -->
-        <div id="content-ai" class="tab-content hidden h-full flex flex-col space-y-4">
-          <p class="text-sm text-emerald-400/80 font-mono mb-2 border-b border-emerald-500/30 pb-2 shadow-[0_1px_5px_rgba(16,185,129,0.1)]">Initialize neural link with Mari_Clone_v1.0...</p>
-          
-          <div id="ai-chat-box" class="bg-slate-950/80 border border-emerald-500/30 shadow-[inset_0_0_15px_rgba(16,185,129,0.1)] rounded-lg p-4 h-48 overflow-y-auto font-mono text-sm space-y-3 scrollbar-thin scrollbar-thumb-emerald-500/30 scrollbar-track-transparent">
-            <div class="text-slate-400"><span class="text-emerald-500">[System]</span> AI Clone is online. Try saying Hello!</div>
-          </div>
-          
-          <div class="flex gap-2 pt-2">
-            <input type="text" id="ai-input" placeholder="Say something..." class="flex-grow bg-slate-900 border border-emerald-500/40 shadow-[0_0_10px_rgba(16,185,129,0.15)] rounded-lg px-4 py-2 text-white focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition-all font-sans text-sm" onkeypress="handleKeyPress(event)">
-            <button onclick="sendChatMessage()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg flex items-center justify-center transition-colors shadow-[0_0_15px_rgba(16,185,129,0.4)]">
-              <i data-lucide="send" class="w-4 h-4"></i>
-            </button>
-          </div>
-        </div>
-
       </div>
+
     </div>
   </div>
 
@@ -331,15 +337,12 @@
     // Initialize Lucide Icons
     lucide.createIcons();
 
-    // Gemini API Setup
-    const apiKey = ""; 
-
     const titles = {
       'basic': 'Basic Information',
       'hobbies': 'Hobbies & Interests',
       'favorites': 'Favorites',
       'social': 'Social Media',
-      'ai': 'AI Clone Terminal'
+      'fortune': 'Daily Fortune (Omikuji)'
     };
 
     function switchTab(tabId) {
@@ -363,8 +366,8 @@
 
       // 3. Update Button Styles
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        // 特別處理 AI 按鈕的預設外觀
-        if(btn.id === 'btn-ai') {
+        // 特別處理 Fortune 按鈕的預設外觀
+        if(btn.id === 'btn-fortune') {
           btn.className = "tab-btn relative flex items-center justify-between p-4 rounded-xl border transition-all duration-300 overflow-hidden group bg-slate-900/50 border-emerald-500/30 hover:bg-emerald-500/10 hover:border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]";
           btn.querySelector('.icon-wrapper').className = "icon-wrapper transition-colors duration-300 text-emerald-500 group-hover:text-emerald-300";
           btn.querySelector('.btn-text').className = "btn-text font-medium text-sm sm:text-base transition-colors duration-300 text-emerald-400 group-hover:text-white";
@@ -382,7 +385,7 @@
       const activeBtn = document.getElementById('btn-' + tabId);
       
       // Active styling
-      if(tabId === 'ai') {
+      if(tabId === 'fortune') {
         activeBtn.className = "tab-btn active relative flex items-center justify-between p-4 rounded-xl border transition-all duration-300 overflow-hidden group bg-emerald-500/20 border-emerald-400 shadow-[0_0_25px_rgba(16,185,129,0.5)]";
         activeBtn.querySelector('.icon-wrapper').className = "icon-wrapper transition-colors duration-300 text-emerald-300";
       } else {
@@ -395,93 +398,54 @@
       activeBtn.querySelector('.btn-text').className = "btn-text font-medium text-sm sm:text-base transition-colors duration-300 text-white";
     }
 
-    // --- Gemini API 互動聊天功能 ---
-    async function fetchWithRetry(url, options, maxRetries = 5) {
-      let delay = 1000;
-      for (let i = 0; i < maxRetries; i++) {
-        try {
-          const response = await fetch(url, options);
-          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-          return await response.json();
-        } catch (error) {
-          if (i === maxRetries - 1) throw error;
-          await new Promise(resolve => setTimeout(resolve, delay));
-          delay *= 2; 
+    // --- 英文抽籤系統 (Fortune Draw) ---
+    const fortunes = [
+      { text: "GREAT BLESSING", desc: "Super lucky! You are invincible today.", color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-400/50", glow: "shadow-[0_0_25px_rgba(250,204,21,0.3)]" },
+      { text: "MIDDLE BLESSING", desc: "A great day for coding. No bugs in sight.", color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-400/50", glow: "shadow-[0_0_25px_rgba(52,211,153,0.3)]" },
+      { text: "SMALL BLESSING", desc: "Things will go smoothly. Remember to save your work.", color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-400/50", glow: "shadow-[0_0_25px_rgba(96,165,250,0.3)]" },
+      { text: "CURSE", desc: "System error! Watch your step (and your spelling).", color: "text-red-500", bg: "bg-red-500/10", border: "border-red-500/50", glow: "shadow-[0_0_25px_rgba(239,68,68,0.3)]" }
+    ];
+
+    let isDrawing = false;
+    function drawFortune() {
+      if(isDrawing) return;
+      isDrawing = true;
+      
+      const resultBox = document.getElementById('fortune-result');
+      const resultTitle = document.getElementById('fortune-title');
+      const resultDesc = document.getElementById('fortune-desc');
+      const btn = document.getElementById('draw-btn');
+
+      // 按鈕重置與載入狀態
+      btn.classList.add('opacity-50', 'cursor-not-allowed');
+      resultBox.className = "mt-8 p-6 w-full max-w-sm rounded-xl border border-slate-700 bg-slate-800/50 text-center transition-all duration-300 opacity-100 transform scale-100";
+      resultTitle.className = "text-3xl font-bold font-mono mb-2 text-slate-300 blur-[2px]";
+      resultDesc.innerText = "Decrypting fate...";
+
+      let counter = 0;
+      const maxCounter = 20; // 抽籤字樣快速切換的次數
+      
+      const shuffleInterval = setInterval(() => {
+        const randomF = fortunes[Math.floor(Math.random() * fortunes.length)];
+        resultTitle.innerText = randomF.text;
+        
+        counter++;
+        if (counter >= maxCounter) {
+          clearInterval(shuffleInterval);
+          
+          // 鎖定最終結果
+          const finalF = fortunes[Math.floor(Math.random() * fortunes.length)];
+          resultTitle.innerText = finalF.text;
+          resultTitle.className = `text-3xl font-bold font-mono mb-2 drop-shadow-[0_0_8px_currentColor] ${finalF.color}`;
+          resultDesc.innerText = finalF.desc;
+          
+          // 加入所屬的霓虹顏色框框
+          resultBox.className = `mt-8 p-6 w-full max-w-sm rounded-xl border transition-all duration-500 opacity-100 transform scale-100 ${finalF.bg} ${finalF.border} ${finalF.glow}`;
+          
+          btn.classList.remove('opacity-50', 'cursor-not-allowed');
+          isDrawing = false;
         }
-      }
-    }
-
-    function handleKeyPress(event) {
-      if (event.key === 'Enter') {
-        sendChatMessage();
-      }
-    }
-
-    function appendMessage(sender, text, isError = false) {
-      const chatBox = document.getElementById('ai-chat-box');
-      const msgDiv = document.createElement('div');
-      msgDiv.className = 'fade-in';
-      
-      let prefix = '';
-      let colorClass = '';
-      
-      if (sender === 'User') {
-        prefix = '<span class="text-blue-400">[Guest]</span>';
-        colorClass = 'text-slate-300';
-      } else if (sender === 'AI') {
-        prefix = '<span class="text-emerald-400">[Mari.AI]</span>';
-        colorClass = isError ? 'text-red-400' : 'text-emerald-100';
-      }
-      
-      msgDiv.innerHTML = `${prefix} <span class="${colorClass}">${text}</span>`;
-      chatBox.appendChild(msgDiv);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    async function sendChatMessage() {
-      const inputEl = document.getElementById('ai-input');
-      const text = inputEl.value.trim();
-      if (!text) return;
-      
-      inputEl.value = '';
-      appendMessage('User', text);
-      inputEl.disabled = true;
-      
-      const thinkingId = 'thinking-' + Date.now();
-      const chatBox = document.getElementById('ai-chat-box');
-      const thinkingDiv = document.createElement('div');
-      thinkingDiv.id = thinkingId;
-      thinkingDiv.innerHTML = `<span class="text-emerald-400">[Mari.AI]</span> <span class="text-slate-500 animate-pulse">Thinking... (;&#180;&#1076;\`)</span>`;
-      chatBox.appendChild(thinkingDiv);
-      chatBox.scrollTop = chatBox.scrollHeight;
-
-      // 設定 AI 的人設 (繁體中文)
-      const systemPrompt = "你是 Mari，一個 2009 年出生的 INTP 高中生，就讀於復興高中資安班。你很容易緊張，情緒起伏有點大。你喜歡畫畫(主要是人物)、聽音樂、看動漫，喜歡的食物是咖哩飯和拉麵。請用繁體中文回答，語氣要像一個有點害羞但懂技術的青少女，回答要簡短，偶爾可以使用顏文字如 (;'Д`) 或 (*´∀`)。";
-      
-      const payload = {
-        contents: [{ parts: [{ text: text }] }],
-        systemInstruction: { parts: [{ text: systemPrompt }] }
-      };
-
-      try {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-        const result = await fetchWithRetry(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        document.getElementById(thinkingId).remove();
-        const aiResponse = result.candidates?.[0]?.content?.parts?.[0]?.text || "哎呀... 系統好像有點當機了 (;'Д`)";
-        appendMessage('AI', aiResponse);
-
-      } catch (error) {
-        document.getElementById(thinkingId).remove();
-        appendMessage('AI', `連線到神經網路失敗... 請稍後再試。`, true);
-      } finally {
-        inputEl.disabled = false;
-        inputEl.focus();
-      }
+      }, 60); // 每次跳轉間隔 60ms
     }
 
     // --- 動態顏文字背景 (Canvas Matrix 效果) ---
